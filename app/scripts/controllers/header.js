@@ -15,7 +15,7 @@ angular.module('convoyApp').controller('HeaderCtrl', function ($scope, $timeout,
      * Supplies a function that will continue to operate until the
      * time is up.
      */
-    function debounce(func, wait, context) {
+    function debounce(func, wait) {
       var timer;
 
       return function debounced() {
@@ -50,9 +50,8 @@ angular.module('convoyApp').controller('HeaderCtrl', function ($scope, $timeout,
           .then(function () {
             $log.debug("toggle " + navID + " is done");
           });
-      }
+      };
     }
-
-	// $scope.toggleLeft = buildDelayedToggler('left');
+    
     $scope.toggleLeft = buildToggler('left');
 });

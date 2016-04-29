@@ -15,14 +15,20 @@ angular.module('convoyApp', [
     'ngRoute',
     'ngSanitize',
     'ui.router',
-    'ngMaterial'
+    'ngMaterial',
+    'restangular'
 ])
-.config(function ($stateProvider, $urlRouterProvider) {
+.config(function ($stateProvider, $urlRouterProvider, RestangularProvider) {
+  RestangularProvider.setBaseUrl('http://convoy.local/servicios/');
   $urlRouterProvider.otherwise('/');
   $stateProvider
   .state('main', {
     url: '/',
-    resolve: {},
+    resolve: {
+      categorias: function(categoriaFactory) {
+        return categoriaFactory.list();
+      }
+    },
     views: {
       '': {
         templateUrl: 'views/main.html'
@@ -44,4 +50,18 @@ angular.module('convoyApp', [
       }
     }
   })
+  .state('main.podcasts', {
+    url: 'podcasts/{idcategoria}',
+    resolve: {
+      episodios: function($stateParams, podcastFactory) {
+        return podcastFactory.episodiosByIdCategoria($stateParams.idcategoria);
+      }
+    },
+    views: {
+      'contenido@main': {
+        templateUrl: 'views/episodios_podcast.html',
+        controller: 'EpisodiosPodcastCtrl'
+      }
+    }
+  });
 });

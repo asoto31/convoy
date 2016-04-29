@@ -1,10 +1,15 @@
 <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
-
   <md-toolbar class="md-theme-light">
     <h1 class="md-toolbar-tools">Programas</h1>
   </md-toolbar>
   <md-content layout-padding="">
-    
+    <md-list>
+      <md-list-item class="md-3-line" ng-repeat="item in categorias">
+        <img ng-src="{{portadasBaseUrl + item.imagen}}" class="md-avatar" alt="{{item.nombre}}" />
+        <div class="md-list-item-text" layout="column">
+          <md-button ui-sref="main.podcasts({idcategoria: item.idcategoria})">{{item.nombre}}</md-button>
+        </div>
+      </md-list-item>
+    </md-list>
   </md-content>
-
 </md-sidenav>
