@@ -1,0 +1,14 @@
+<!-- Header -->
+<div ui-view="header" ></div>
+
+<div id="page-container" class="clearfix">
+	<!-- menu -->
+	<div ui-view="menu"></div>
+	<!-- Main -->
+	<div id="page-content" class="clearfix" fit-height>
+	  	<div id="wrap" ui-view="contenido" class="mainview-animation">
+	  	</div>
+	</div>
+
+</div>
+<footer role="contentinfo" ui-view="footer"></footer>
